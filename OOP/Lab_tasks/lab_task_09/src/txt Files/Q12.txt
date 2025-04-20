@@ -1,0 +1,66 @@
+package Q12;
+
+public interface ComplianceEngine {
+    public void generateReport();
+    public void logAuditTrail();
+    public static void Generalpolicies(){
+        System.out.println("General Policies for Compilance Engine");
+    }
+}
+package Q12;
+
+public interface TradingEngine {
+    public void placeOrder();
+    public void runRiskChecks();
+    public static void Generalpolicies(){
+        System.out.println("General Policies for Trading Engine");
+    }
+}
+package Q12;
+
+public class AlgoTrader implements TradingEngine, ComplianceEngine {
+    public void placeOrder(){
+        System.out.println("Order placed");
+    }
+    public void runRiskChecks(){
+        System.out.println("Running Risk Checks");
+    }
+    public void generateReport(){
+        System.out.println("Generating report");
+    }
+    public void logAuditTrail(){
+        System.out.println("Logging audit trail");
+
+    }
+}
+package Q12;
+
+public class HumanTrader implements TradingEngine {
+    public void placeOrder(){
+        System.out.println("Manual Order placed");
+    }
+    public void runRiskChecks(){
+        System.out.println("Manually Running Risk Checks");
+    }
+
+}
+package Q12;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        TradingEngine engine = new AlgoTrader();
+        TradingEngine engine1= new HumanTrader();
+        engine.placeOrder();
+        engine.runRiskChecks();
+        engine1.runRiskChecks();
+        engine1.placeOrder();
+        ArrayList<TradingEngine> engines = new ArrayList<>();
+        engines.add(engine);
+        engines.add(engine1);
+        for(TradingEngine engine2 : engines) {
+            engine2.placeOrder();
+        }
+    }
+}

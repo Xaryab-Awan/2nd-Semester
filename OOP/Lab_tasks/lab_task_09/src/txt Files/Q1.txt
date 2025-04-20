@@ -1,0 +1,39 @@
+package Q1;
+
+public abstract class Bank {
+    abstract String get_Balance();
+}
+package Q1;
+
+public class A extends Bank{
+    String get_Balance(){
+        return "100$";
+    }
+}
+package Q1;
+
+public class B extends Bank{
+    String get_Balance(){
+        return "200$";
+    }
+}
+package Q1;
+
+public class C extends Bank{
+    String get_Balance(){
+        return "300$";
+    }
+}
+package Q1;
+
+public class Main {
+    public static void main(String[] args) {
+        Bank a=new A();
+        Bank b=new B();
+        Bank c=new C();
+        System.out.println(a.get_Balance());;
+        System.out.println(b.get_Balance());;
+        System.out.println(c.get_Balance());;
+
+    }
+}

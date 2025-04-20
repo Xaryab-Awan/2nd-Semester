@@ -1,0 +1,110 @@
+package Q7;
+
+public interface Payment {
+    public void pay(double amount);
+    public double getPaymentDetails();
+    static void PaymentPolicy(){};
+}
+package Q7;
+
+public class PayPalPayment implements Payment{
+    double balance;
+
+    public PayPalPayment(double balance) {
+        this.balance = balance;
+    }
+
+
+    public void pay(double amount) {
+        if(amount<balance){
+            this.balance-=amount;
+            System.out.println("Amount Paid Using PayPal");
+        }
+        else {
+            System.out.println("Insufficient Balance");
+        }
+    }
+
+    public double getPaymentDetails() {
+        return this.balance;
+    }
+    static void PaymentPolicy(){
+        System.out.println("PayPal Payment can be done online");
+    }
+}
+package Q7;
+
+public class BitcointPayment implements Payment{
+    double balance;
+
+    public BitcointPayment(double balance) {
+        this.balance = balance;
+    }
+
+    public void pay(double amount) {
+        if(amount<balance){
+            this.balance-=amount;
+            System.out.println("Amount Paid Using Bit Coin");
+        }
+        else {
+            System.out.println("Insufficient Balance");
+        }
+    }
+
+    public double getPaymentDetails() {
+        return this.balance;
+    }
+    static void PaymentPolicy(){
+        System.out.println("BitCoin Payment can be done only on Binance");
+    }
+}
+
+package Q7;
+
+public class CreditCardPayment implements Payment{
+    double balance;
+
+    public CreditCardPayment(double balance) {
+        this.balance = balance;
+    }
+
+    public void pay(double amount){
+        if(amount<balance){
+            this.balance-=amount;
+            System.out.println("Amount Paid Using Credit Card");
+        }
+        else {
+            System.out.println("Insufficient Balance");
+        }
+    }
+
+
+    public double getPaymentDetails() {
+        return this.balance;
+    }
+    static void PaymentPolicy(){
+        System.out.println("Credit Card Payment can only be accepted on site");
+    }
+}
+package Q7;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        Payment p1=new CreditCardPayment(3000);
+        Payment p2=new PayPalPayment(4000);
+        Payment p3=new BitcointPayment(4000);
+        ArrayList<Payment> arrayList=new ArrayList<>();
+        arrayList.add(p1);
+        arrayList.add(p2);
+        arrayList.add(p3);
+        for(Payment payment:arrayList){
+            payment.pay(300);
+            System.out.println(payment.getPaymentDetails());
+        }
+        CreditCardPayment.PaymentPolicy();
+        PayPalPayment.PaymentPolicy();
+        BitcointPayment.PaymentPolicy();
+    }
+}

@@ -1,0 +1,73 @@
+package Q3;
+
+public abstract class Character {
+    protected int health;
+    protected int attackPower;
+    protected String name;
+
+    public Character(int health, int attackPower, String name) {
+        this.health = health;
+        this.attackPower = attackPower;
+        this.name = name;
+    }
+
+    abstract void SpecialAbility();
+    void attack(Character c){
+        System.out.println(this.name+" is attacking " +c.name);
+        c.health=(c.health-this.attackPower);
+    }
+    void defend(){
+        System.out.println(this.name+" is Defending itself");
+    }
+
+}
+package Q3;
+
+public class Warrior extends Character{
+    void SpecialAbility(){
+        this.attackPower=this.attackPower*2;
+        System.out.println(" Warrior's Attack Power Doubled");
+    }
+
+    public Warrior(int health, int attackPower, String name) {
+        super(health, attackPower, name);
+    }
+
+}
+package Q3;
+
+public class Mage extends Character {
+    public Mage(int health, int attackPower, String name) {
+        super(health, attackPower, name);
+    }
+    void SpecialAbility(){
+        this.attackPower=this.attackPower+20;
+        System.out.println(" Mage's Attack Power Increased By 20");
+    }
+}
+package Q3;
+
+public class Archer extends Character{
+    public Archer(int health, int attackPower, String name) {
+        super(health, attackPower, name);
+    }
+    void SpecialAbility(){
+        this.attackPower=this.attackPower+15;
+        System.out.println("Archer's Attack Power Increased by 15");
+    }
+}
+package Q3;
+
+public class Game {
+    public static void main(String[] args) {
+        Character w1=new Warrior(100,40,"Warrior");
+        Character m1=new Mage(100,50,"Mage");
+        Character a1=new Archer(100,60,"Archer");
+        w1.SpecialAbility();
+        w1.attack(m1);
+        m1.SpecialAbility();
+        m1.attack(w1);
+        a1.SpecialAbility();
+        a1.attack(m1);
+    }
+}

@@ -1,0 +1,99 @@
+package Q10;
+
+public interface DeliveryPolicy {
+    public void assignRider();
+    public void calculateDeliveryCharge();
+
+
+}
+package Q10;
+
+public interface OrderPolicy {
+    public void acceptOrder();
+    public void calculatePreparationTime(boolean busyhours);
+    public static void commonGuidelines(){
+        System.out.println("Common Guidelines");
+        System.out.println("Rule 1");
+        System.out.println("Rule 2");
+    }
+
+
+}
+package Q10;
+
+public class RestrauntPartner implements DeliveryPolicy, OrderPolicy {
+
+    private Boolean busyhours;
+    private double baseprice;
+    private double preparationtime;
+
+    public RestrauntPartner(Boolean busyhours, double baseprice) {
+        this.busyhours = busyhours;
+        this.baseprice = baseprice;
+
+    }
+
+    public void assignRider() {
+        System.out.println("Assigning rider to RestrauntPartner");
+    }
+    public void calculateDeliveryCharge() {
+        if(busyhours) {
+            System.out.println("Delivery Charges: Rs 100");
+        }
+        else{
+            System.out.println("Delivery Charges: Rs 50");
+        }
+
+    }
+    public void acceptOrder() {
+        System.out.println("Accepting Order");
+    }
+    public void calculatePreparationTime(boolean busyhours) {
+        if(busyhours){
+            this.preparationtime = baseprice *2;
+        }
+        else {
+            this.preparationtime = baseprice;
+        }
+
+    }
+
+
+
+}
+package Q10;
+
+public class ExpressDeliveryPartner implements DeliveryPolicy{
+    public void assignRider(){
+        System.out.println("Assigning Rider");
+    }
+    public void calculateDeliveryCharge(){
+        System.out.println("No Delivery Charges");
+    }
+
+}
+package Q10;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        RestrauntPartner r1=new RestrauntPartner(true,500);
+        DeliveryPolicy  r2=new RestrauntPartner(false,700);
+        DeliveryPolicy r3=new RestrauntPartner(true,600);
+        ArrayList<DeliveryPolicy> d1=new ArrayList<>();
+        d1.add(r2);
+        d1.add(r3);
+        r1.assignRider();
+        r2.assignRider();
+        r3.assignRider();
+        r1.calculateDeliveryCharge();
+        r2.calculateDeliveryCharge();
+        r3.calculateDeliveryCharge();
+        r1.calculatePreparationTime(true);
+        for(DeliveryPolicy d:d1){
+            d.assignRider();
+        }
+
+    }
+}

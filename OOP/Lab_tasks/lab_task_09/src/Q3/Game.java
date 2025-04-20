@@ -1,6 +1,6 @@
 package Q3;
 
-public class Game {
+public class    Game {
     public static void main(String[] args) {
         Character w1=new Warrior(100,40,"Warrior");
         Character m1=new Mage(100,50,"Mage");

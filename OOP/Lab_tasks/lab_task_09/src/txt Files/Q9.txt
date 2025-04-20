@@ -1,0 +1,102 @@
+package Q9;
+
+public abstract class UberRide {
+    public String rideId;
+    public int distance;
+    public double baseFare;
+
+    public UberRide(String rideId, int distance, double baseFare) {
+        this.rideId = rideId;
+        this.distance = distance;
+        this.baseFare = baseFare;
+    }
+    public abstract double CalculateFare();
+    public abstract void DispatchDriver();
+
+    public void PrintReceipt() {
+        System.out.println("Ride ID: "+this.rideId);
+        System.out.println("Distance: "+this.distance);
+        System.out.println("Base Fare: "+this.baseFare);
+    }
+}
+package Q9;
+
+public class UberXL extends UberRide{
+    public UberXL(String rideId, int distance, double baseFare) {
+        super(rideId, distance, baseFare);
+    }
+
+    public double CalculateFare(){
+        return (this.baseFare*this.distance+1000);
+    }
+
+
+    public void DispatchDriver() {
+        System.out.println("UBER XL Driver Dispatched!");
+    }
+}
+package Q9;
+
+public class UberX extends UberRide{
+    public UberX(String rideId, int distance, double baseFare) {
+        super(rideId, distance, baseFare);
+    }
+
+   public double CalculateFare(){
+        return (this.baseFare*this.distance+100);
+    }
+
+
+    public void DispatchDriver() {
+        System.out.println("UberX Driver Dispatched!");
+    }
+}
+package Q9;
+
+public class UberBlack extends UberRide{
+    public UberBlack(String rideId, int distance, double baseFare) {
+        super(rideId, distance, baseFare);
+    }
+
+    public double CalculateFare(){
+        return (this.baseFare*this.distance+200);
+    }
+
+
+    public void DispatchDriver() {
+        System.out.println("UBER BLACK Driver Dispatched!");
+    }
+}
+
+package Q9;
+
+import java.util.ArrayList;
+
+public class RideAnalyses {
+    public void Analyses(ArrayList<UberRide> UberRides)
+    {
+        for(UberRide u : UberRides){
+            u.PrintReceipt();
+        }
+    }
+}
+package Q9;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        UberRide u1=new UberX("3055",200,100);
+        UberRide u2=new UberBlack("2551",300,300);
+        UberRide u3=new UberXL("3007",100,200);
+        u1.CalculateFare();
+        u2.CalculateFare();
+        u3.CalculateFare();
+        ArrayList<UberRide> uberRides=new ArrayList<>();
+        uberRides.add(u1);
+        uberRides.add(u2);
+        uberRides.add(u3);
+        RideAnalyses ra=new RideAnalyses();
+        ra.Analyses(uberRides);
+    }
+}

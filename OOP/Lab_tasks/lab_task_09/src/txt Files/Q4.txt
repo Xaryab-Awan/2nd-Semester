@@ -1,0 +1,32 @@
+package Q4;
+
+public abstract class Animals {
+    abstract void cats();
+    abstract void dogs();
+}
+package Q4;
+
+public class Cats extends Animals{
+    void cats(){
+        System.out.println("Cat's meow");
+    }
+    void dogs(){}
+}
+package Q4;
+
+public class Dog extends Animals{
+    void cats(){}
+    void dogs(){
+        System.out.println("Dogs bark");
+    }
+}
+package Q4;
+
+public class Main {
+    public static void main(String[] args) {
+        Animals cat=new Cats();
+        Animals dog=new Dog();
+        cat.cats();
+        dog.dogs();
+    }
+}

@@ -1,0 +1,36 @@
+package Q5;
+
+public interface MessageService
+{
+    public void Send(String message,String recipient);
+    public String receive(String message);
+
+
+
+}
+package Q5;
+
+    public class Whatsapp implements MessageService{
+    public void Send(String message,String recipient){
+        System.out.println("MESSAGE: "+message+ " is sent to "+recipient);
+     }
+     public String receive(String message){
+         return "MESSAGE: "+message+" received";
+     }
+}
+package Q5;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        MessageService messageService=new Whatsapp();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter Message");
+        String m1= sc.nextLine();
+        System.out.println("Enter ReceiverName");
+        String n1= sc.nextLine();
+        messageService.Send(m1,n1);
+        System.out.println( messageService.receive(m1));;
+    }
+}

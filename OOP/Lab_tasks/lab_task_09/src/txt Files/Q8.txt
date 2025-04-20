@@ -1,0 +1,127 @@
+package Q8;
+
+public class BikeRide implements RideService{
+    private String RideType;
+    private String paymentMode;
+    private double fare;
+
+    public BikeRide(String rideType, String paymentMode) {
+        RideType = rideType;
+        this.paymentMode = paymentMode;
+    }
+    @Override
+    public void calculateFare(double distance){
+        this.fare=(distance*Base_Fare)+200;
+
+    }
+    public String getRideType(){
+        return this.RideType;
+    }
+
+    public void PaymentMode(){
+        System.out.println("PaymentMode: "+this.paymentMode);
+    }
+    public void DisplayDetails(){
+        System.out.println("RideType: "+this.RideType);
+        System.out.println("PaymentMode: "+this.paymentMode);
+        System.out.println("Fare: "+this.fare);
+    }
+}
+package Q8;
+
+public class BusinessRide implements RideService{
+    private String RideType;
+    private String paymentMode;
+    private double fare;
+
+    public BusinessRide(String rideType, String paymentMode) {
+        RideType = rideType;
+        this.paymentMode = paymentMode;
+
+    }
+    @Override
+    public void calculateFare(double distance){
+        this.fare=(distance*Base_Fare)+200;
+
+    }
+    public String getRideType(){
+        return this.RideType;
+    }
+
+    public void PaymentMode(){
+        System.out.println("PaymentMode: "+this.paymentMode);
+    }
+    public void DisplayDetails(){
+        System.out.println("RideType: "+this.RideType);
+        System.out.println("PaymentMode: "+this.paymentMode);
+        System.out.println("Fare: "+this.fare);
+    }
+}
+package Q8;
+
+public class EconomyRide implements RideService{
+    private String RideType;
+    private String paymentMode;
+    private double fare;
+
+    public EconomyRide(String rideType, String paymentMode) {
+        RideType = rideType;
+        this.paymentMode = paymentMode;
+
+    }
+
+    @Override
+    public void calculateFare(double distance){
+        this.fare=(distance*Base_Fare)+100;
+
+    }
+    public String getRideType(){
+        return this.RideType;
+    }
+
+    public void PaymentMode(){
+        System.out.println("PaymentMode: "+this.paymentMode);
+    }
+    public void DisplayDetails(){
+        System.out.println("RideType: "+this.RideType);
+        System.out.println("PaymentMode: "+this.paymentMode);
+        System.out.println("Fare: "+this.fare);
+    }
+}
+package Q8;
+
+public interface RideService {
+    double Base_Fare=1000;
+    public void calculateFare(double distance);
+    public String getRideType();
+    public void PaymentMode();
+    public void DisplayDetails();
+}
+package Q8;
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        RideService e1=new EconomyRide("Economy","Cash");
+        RideService b1=new BusinessRide("business","Card");
+        RideService b2=new BikeRide("Bike","Cash");
+        e1.calculateFare(300);
+        b1.calculateFare(200);
+        b2.calculateFare(100);
+        System.out.println(e1.getRideType());
+        System.out.println(b1.getRideType());
+        System.out.println(b2.getRideType());
+        e1.PaymentMode();
+        b1.PaymentMode();
+        b2.PaymentMode();
+        ArrayList<RideService> R1=new ArrayList<>();
+        R1.add(e1);
+        R1.add(b1);
+        R1.add(b2);
+        for(RideService r:R1){
+            r.DisplayDetails();
+        }
+
+    }
+}

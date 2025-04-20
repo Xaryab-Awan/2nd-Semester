@@ -1,0 +1,76 @@
+package Q6;
+
+public interface BankAccount {
+    public void deposit(double amount);
+    public void withdraw(double amount);
+    public double getBalance();
+}
+package Q6;
+
+public class SavingAccount implements BankAccount{
+    private double balance;
+
+    public SavingAccount(double balance) {
+        this.balance = balance;
+    }
+    public double getBalance(){
+        return this.balance;
+    }
+    public void deposit(double amount){
+        this.balance+=amount;
+        System.out.println("Amount Deposited");
+    }
+    public void withdraw(double amount){
+        if(amount<balance){
+            this.balance-=amount;
+            System.out.println("Amount withdrawed");
+        }
+        else {
+            System.out.println("Insufficient Amount");
+        }
+    }
+
+}
+package Q6;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount account=new SavingAccount(30000);
+        int choice=0;
+        Scanner sc=new Scanner(System.in);
+        do{
+            System.out.println("1) Deposit");
+            System.out.println("2) Withdraw");
+            System.out.println("3) TotalBalance");
+            System.out.println("4) Exit");
+            choice=sc.nextInt();
+            switch(choice){
+                case 1:{
+                    System.out.println("Enter amount to deposit:");
+                    double amount=sc.nextDouble();
+                    account.deposit(amount);
+                    break;
+                }
+                case 2:{
+                    System.out.println("Enter amount to withdraw:");
+                    double amount=sc.nextDouble();
+                    account.withdraw(amount);
+                    break;
+                }
+                case 3:{
+                    System.out.println("TOTAL BALANCE: "+account.getBalance());
+                    break;
+                }
+                case 4:{
+                    choice=4;
+                    System.out.println("Exiting......");
+                    break;
+                }
+
+            }
+
+        }while(choice!=4);
+            }
+}
