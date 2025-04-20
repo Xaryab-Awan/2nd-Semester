@@ -1,0 +1,109 @@
+package Q2;
+
+public class Faculty extends Person {
+    private String facultyID;
+    private String department;
+    private String rank;
+
+    public Faculty(String name, String email, String phone, String facultyID, String department, String rank) {
+        super(name, email, phone);
+        this.facultyID = facultyID;
+        this.department = department;
+        this.rank = rank;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+    @Override
+    public void Display(){
+        super.Display();
+        System.out.println("Faculty ID:"+facultyID);
+        System.out.println("Department:"+department);
+    }
+}
+package Q2;
+
+public class Person {
+    protected String name;
+    protected String email;
+    protected String phone;
+
+    public Person(String name, String email, String phone) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+    public String toString() {
+        return super.toString() + "\tName: " + name + "\tEmail: " + email + "\tPhone: " + phone;
+    }
+    public void Display() {
+        System.out.println("Name:"+name);
+        System.out.println("Email:"+email);
+        System.out.println("Phone:"+phone);
+    }
+}
+package Q2;
+
+public class Staff extends Person {
+    private String staffID;
+    private String Jobtitle;
+    private int salary;
+
+    public Staff(String name, String email, String phone, String staffID, String jobtitle, int salary) {
+        super(name, email, phone);
+        this.staffID = staffID;
+        this.Jobtitle = jobtitle;
+        this.salary = salary;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+    @Override
+    public void Display(){
+        super.Display();
+        System.out.println("Staff ID:"+staffID);
+        System.out.println("Jobtitle:"+Jobtitle);
+    }
+}
+package Q2;
+
+public class Student extends Person {
+    private String stdID;
+    private String major;
+    private double  GPA;
+
+    public Student(String name, String email, String phone, String stdID, String major, double GPA) {
+        super(name, email, phone);
+        this.stdID = stdID;
+        this.major = major;
+        this.GPA = GPA;
+    }
+    public double getGPA() {
+        return GPA;
+    }
+    @Override
+    public void Display() {
+        super.Display();
+        System.out.println("Student ID:"+stdID);
+        System.out.println("Major:"+major);
+    }
+}
+package Q2;
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1=new Student("xaryab","k243055@nu.edu.pk","03283414102","3055","SoftwareEngineering",3.63);
+        Faculty f1=new Faculty("Arham","Syed.Arham@nu.edu.pk","0341009277","2551","ComputerScience","Lecturer");
+        Staff st1=new Staff("Rafay","AbdulRafay@nu.edu.pk","024487399","3007","LabAssistant",3000);
+        s1.Display();
+        System.out.println("GPA"+s1.getGPA());
+        f1.Display();
+        System.out.println("Rank:"+f1.getRank());
+        st1.Display();
+        System.out.println("Salary:"+st1.getSalary());
+
+
+    }
+}

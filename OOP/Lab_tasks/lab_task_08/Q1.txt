@@ -1,0 +1,79 @@
+package Q1;
+
+public class Book extends Item{
+    private String ISBN;
+    private String publisher;
+
+    public Book(String title, String author, int year, String ISBN, String publisher) {
+        super(title, author, year);
+        this.ISBN = ISBN;
+        this.publisher = publisher;
+    }
+    @Override
+    public String toString() {
+        return super.toString() + "\tISBN: " + ISBN + "\tPublisher: " + publisher;
+    }
+}
+package Q1;
+
+public class DVD extends Item{
+    private String director;
+    private int length;
+
+    public DVD(String title, String author, int year, String director, int length) {
+        super(title, author, year);
+        this.director = director;
+        this.length = length;
+    }
+    @Override
+    public String toString() {
+        return super.toString() + "\tDirector: " + director + "\tLength: " + length;
+    }
+}
+package Q1;
+
+public class Item {
+    protected String title;
+    protected String author;
+    protected int year;
+
+    public Item(String title, String author, int year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+    }
+
+    public String toString(){
+        return "TITLE: "+title + "\t Author: " + author + "\t Year: " + year;
+    }
+
+
+}
+package Q1;
+
+public class Magazine extends Item{
+    private String publisher;
+    private String issueNumber;
+
+    public Magazine(String title, String author, int year, String publisher, String issueNumber) {
+        super(title, author, year);
+        this.publisher = publisher;
+        this.issueNumber = issueNumber;
+    }
+    @Override
+    public String toString() {
+        return super.toString()+"\tPublisher: "+publisher+"\t IssueNumber: "+issueNumber;
+    }
+}
+package Q1;
+
+public class Main {
+    public static void main(String[] args) {
+        Book book=new Book("HarryPotter","Xaryab",2025,"3055","HP publishers");
+        Magazine magazine=new Magazine("DailyDawn","Arham",2025,"Dawn News","2551");
+        DVD dvd=new DVD("Who will carry the Boats","David Gogins",2025,"Rafay",20);
+        System.out.println(book.toString());
+        System.out.println(magazine.toString());
+        System.out.println(dvd.toString());
+    }
+}
