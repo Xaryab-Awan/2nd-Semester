@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Q8 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            System.out.print("Enter item quantity: ");
+            String itemQuantityString = scanner.nextLine();
+
+            if (itemQuantityString == null || itemQuantityString.isEmpty()) {
+                throw new NullPointerException("Item quantity cannot be null or empty.");
+            }
+
+            int itemQuantity = Integer.parseInt(itemQuantityString);
+
+            if (itemQuantity < 0 || itemQuantity > 100) {
+                throw new InvalidOrderException("Item quantity must be between 0 and 100.");
+            }
+
+            System.out.print("Enter item price: ");
+            String itemPriceString = scanner.nextLine();
+
+            if (itemPriceString == null || itemPriceString.isEmpty()) {
+                throw new NullPointerException("Item price cannot be null or empty.");
+            }
+
+            double itemPrice = Double.parseDouble(itemPriceString);
+
+            if (itemPrice < 0 || itemPrice > 50000) {
+                throw new InvalidOrderException("Item price must be between 0 and 50000.");
+            }
+
+            double itemTotalCost = itemQuantity * itemPrice;
+            System.out.println("Item total cost: " + itemTotalCost);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Input must be a valid number.");
+        } catch (NullPointerException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (InvalidOrderException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("Order processing finished for current item.");
+        }
+        scanner.close();
+    }
+}
+
+class InvalidOrderException extends Exception {
+    public InvalidOrderException(String message) {
+        super(message);
+    }
+}

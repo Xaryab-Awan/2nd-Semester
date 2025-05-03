@@ -1,0 +1,30 @@
+import java.util.Scanner;
+class InvalidEstimateException extends Exception {
+    public InvalidEstimateException(String message) {
+        super(message);
+    }
+}
+
+public class Q6 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Enter estimated hours: ");
+            String hours = sc.nextLine();
+            if (hours == null || hours.isEmpty()) {
+                throw new IllegalArgumentException("Input cannot be null or empty.");
+            }
+            int estimatedHours = Integer.parseInt(hours);
+            if (estimatedHours < 0 || estimatedHours > 100) {
+                throw new InvalidEstimateException("Estimated hours must be between 0 and 100.");
+            }
+            System.out.println("Estimated hours: " + estimatedHours);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Input must be a valid integer.");
+        } catch (InvalidEstimateException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("Estimation process completed.");
+        }
+    }
+}

@@ -1,0 +1,33 @@
+import java.util.Scanner;
+public class Q2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter an integer to calculate its factorial: ");
+        String input = scanner.nextLine();
+        try {
+            if (input == null || input.isEmpty()) {
+                throw new IllegalArgumentException("Input cannot be null or empty.");
+            }
+            int n = Integer.parseInt(input);            
+            if (n < 0) {
+                throw new IllegalArgumentException("Factorial is not defined for negative integers.");
+            }
+            long fact = 1;
+            for (int i = 1; i <= n; i++) {
+                fact *= i;
+                if (fact < 0) {
+                    throw new ArithmeticException("Factorial is too large to calculate.");
+                }
+            }
+            System.out.println("The factorial of " + n + " is: " + fact);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Input must be a valid integer.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+}

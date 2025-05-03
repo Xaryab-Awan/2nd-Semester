@@ -1,0 +1,55 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class Q7 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        double totalFunding = 0;
+        int validEntries = 0;
+        final int maxAllowable = 10000000;
+        try {
+            while (true) {
+                System.out.print("Enter funding for project (or 'exit' to finish): ");
+                String entry = input.nextLine();
+                if (entry.equalsIgnoreCase("exit")) {
+                    break;
+                }
+
+                if (entry == null || entry.isEmpty()) {
+                    System.out.println("Error: Funding cannot be null or empty.");
+                    continue;
+                }
+
+                try {
+                    double allocation = Double.parseDouble(entry);
+                    if (allocation > maxAllowable) {
+                        throw new AllocationExceededException("Funding for a single project cannot exceed " + maxAllowable + " PKR.");
+                    }
+                    totalFunding += allocation;
+                    validEntries++;
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Funding must be a valid number.");
+                } catch (AllocationExceededException e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Invalid input.");
+        } finally {
+            input.close();
+            if (validEntries == 0) {
+                System.out.println("No valid funding entries were made.");
+            } else {
+                System.out.println("Total funding: " + totalFunding);
+                System.out.println("Funding round completed.");
+            }
+        }
+    }
+}
+
+class AllocationExceededException extends Exception {
+    public AllocationExceededException(String message) {
+        super(message);
+    }
+}
+

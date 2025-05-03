@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Q1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the count of numbers: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+        ArrayList<String> arr = new ArrayList<String>();
+        System.out.println("Enter the values: ");
+        for (int i = 0; i < n; i++) {
+            arr.add(sc.nextLine());
+        }
+        if (arr == null || arr.isEmpty()) {
+            System.out.println("List is null or empty");
+            return;
+        }
+        int count = 0;
+        double sum = 0;
+        for (String s : arr) {
+            try {
+                int num = Integer.parseInt(s);
+                sum += num;
+                count++;
+            } catch (NumberFormatException e) {
+                System.out.println(s + " is not a valid integer");
+            }
+        }
+
+        if (count == 0) {
+            System.out.println("No valid integers in the list");
+        } else {
+            double average = sum / count;
+            System.out.println("The average of valid integers is: " + average);
+        }
+    }
+}
+

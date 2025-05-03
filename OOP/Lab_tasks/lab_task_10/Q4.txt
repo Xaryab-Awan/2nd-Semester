@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Q4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String word;
+        try {
+            System.out.print("Enter a sentence: ");
+            word = sc.nextLine();
+            if (word == null || word.isEmpty() || word.split(" ").length < 2) {
+                throw new Exception("Invalid input");
+            }
+            String[] words = word.split(" ");
+            String first_Word = words[0];
+            String last_Word = words[words.length - 1];
+            String modifiedSentence = last_Word + " " + word.substring(first_Word.length() + 1);
+            System.out.println("Modified sentence: " + modifiedSentence);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            sc.close();
+        }
+    }
+}
+

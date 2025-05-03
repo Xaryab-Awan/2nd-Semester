@@ -1,0 +1,64 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class Q5 {
+    public static void main(String[] args) {
+        int Scores = 0;
+        int count = 0;
+        final int maxOvers = 20;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the scores ,'exit' to finish.");
+        try {
+            do { 
+                System.out.print("Enter score for over " + (count + 1) + ": ");
+                String score = input.nextLine();
+
+                if (score.equalsIgnoreCase("exit")) {
+                    break;
+                }
+
+                if (score == null || score.trim().isEmpty()) {
+                    System.out.println("Error: Score cannot be null or empty.");
+                    continue;
+                }
+
+                try {
+                    int runs = Integer.parseInt(score);
+
+                    if (runs < 0) {
+                        System.out.println("Error: Score cannot be negative.");
+                        continue;
+                    }
+
+                    Scores += runs;
+                    count++;
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Score must be a valid integer.");
+                }
+
+                if (count > maxOvers) {
+                    throw new TooManyOversException("Too many overs entered. Maximum allowed is " + maxOvers + ".");
+                }
+            }
+            while(true);
+            if (count == 0) {
+                System.out.println("No valid scores entered.");
+            } else {
+                double average = (double) Scores / count;
+                System.out.println("Total score: " + Scores);
+                System.out.println("Average per over: " + average);
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Invalid input.");
+        } catch (TooManyOversException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            System.out.println("Score updated.");
+            input.close();
+        }
+    }
+}
+class TooManyOversException extends Exception {
+    public TooManyOversException(String message) {
+        super(message);
+    }
+}

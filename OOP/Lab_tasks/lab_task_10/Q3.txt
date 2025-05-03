@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class Q3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Enter the first number: ");
+            String input1 = sc.nextLine();
+
+            if (input1 == null || input1.isEmpty()) {
+                throw new IllegalArgumentException("First number cannot be null or empty.");
+            }
+            double num1 = Double.parseDouble(input1);
+            System.out.print("Enter the second number: ");
+            String input2 = sc.nextLine();
+            if (input2 == null || input2.isEmpty()) {
+                throw new IllegalArgumentException("Second number cannot be null or empty.");
+            }
+            double num2 = Double.parseDouble(input2);
+            System.out.print("Enter the operation (+, -, *, /): ");
+            String operation = sc.nextLine();
+            double result;
+            switch (operation) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    if (num2 == 0) {
+                        throw new ArithmeticException("Division by zero is not allowed.");
+                    }
+                    result = num1 / num2;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid operation. Please enter +, -, *, or /.");
+            }
+            System.out.println("The result of the operation is: " + result);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Input must be a valid number (integer or double).");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            sc.close();
+        }
+    }
+}
+
